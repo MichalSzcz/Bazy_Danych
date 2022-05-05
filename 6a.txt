@@ -1,0 +1,56 @@
+zamowienia(id_produktu, nazwa_produktu, id_klienta, nazwa_klienta, 
+data_zamowienia, cena_produktu, ilość, VAT, suma_brutto, suma_netto)
+
+#nazwy produktów i nazwy klientów są unikalne
+#vat roznic sie w zaleznosci od typu
+#suma brutto to suma netto powiekszona o vat
+#zamowienia klientkow w tym samym dniu sa laczone. 
+#tylko jedno zamowienie dla danego klienta dziennie(zamowienie danego produktu)
+#nazwy produktow i nazwy klientow sa unikalne.
+
+1.
+
+
+id_produktu -> nazwa_produktu,cena_produktu,VAT
+
+nazwa_produktu-> id_produktu,cena_produktu
+
+id_klienta -> id_klienta, nazwa_klienta, data_zamowienia, ilosc
+
+nazwa_klienta -> id_klienta, data_zamowienia, ilosc
+
+data_zamowienia -> nazwa_klienta, id_klienta, cena_produktu, ilość
+
+cena_produktu -> nazwa_produktu
+
+ilość -> suma_netto,suma_brutto
+
+VAT -> suma_brutto, nazwa_produktu
+
+suma_brutto -> ilość, cena_produktu
+
+suma_netto -> VAT, suma_brutto
+
+2.
+Klucze kandydujące:
+id_klienta,id_produktu
+
+
+
+3.pomieszczenia(id_pomieszczenia, numer_pomieszczenia, id_budynku, 
+powierzchnia, liczba_okien, liczba_drzwi, ulica, miasto, kod_pocztowy) 
+#zaleznosci funkcyjne
+id_pomieszczenia -> numer_pomieszczenia, id_budynku
+numer_pomieszczenia -> id_budynku,miasto
+id_budynku -> miasto,kod_pocztowy
+powierzchnia->id_budynku,numer_pomieszczenia
+liczba_okien-> id_budynku,numer_pomieszczenia
+liczba_drzwi->id_budynku,numer_pomieszczenia
+ulica->miasto,kod_pocztowy
+miasto->kod_pocztowy
+kod_pocztowy->miasto,ulica
+#klucze kandydujące
+id_pomieszczenia,id_budynku
+Okresl wszystkie zaleznosci funkcyjne oraz klucze kandydujace
+#przyjmij zalozenie, ze id_pomieszczenia to autoinkrementowany, unikalny identyfikator
+pomieszczenia w tabeli.
